@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:movie/constant.dart';
 
 class Buttons extends StatelessWidget {
+  final Function function;
+  Buttons({this.function});
   @override
   Widget build(BuildContext context) {
     return             Padding(
@@ -10,7 +12,7 @@ class Buttons extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           GestureDetector(
-            onTap: () {},
+            onTap: function,
             child: Container(
               width: 140,
               height: 35,

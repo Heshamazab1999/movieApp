@@ -14,6 +14,7 @@ class FilmController extends BaseController {
   final _movieUpcoming = <MovieModel>[].obs;
   final _person = <Person>[].obs;
   final _video = <Video>[].obs;
+  int id;
 
   List<MovieModel> get movie => _movie;
 
@@ -52,9 +53,9 @@ class FilmController extends BaseController {
     _movieUpcoming.assignAll(await _filmServices.getUpComing());
   }
 
-  // getVideo(int id) async {
-  //   _video.add(await _filmServices.getMovieVideos(id));
-  // }
+  getVideo(int id) async {
+    _video.assignAll(await _filmServices.getMovieVideos(id));
+  }
 
   int calculate(int a, int b) {
     var c = a + b;
