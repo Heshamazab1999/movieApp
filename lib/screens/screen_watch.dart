@@ -1,20 +1,17 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:movie/component/actors_card.dart';
-import 'package:movie/component/button.dart';
-import 'package:movie/component/container_falm_name.dart';
 import 'package:movie/component/container_watch.dart';
+import 'package:movie/component/name_of_film.dart';
 import 'package:movie/component/trailer_container.dart';
 import 'package:movie/constant.dart';
 import 'package:movie/controller/film_controller.dart';
 import 'package:movie/model/film_model.dart';
-import 'package:movie/model/video_model.dart';
 
 class WatchScreen extends StatelessWidget {
   final MovieModel movieModel;
-  final Video video;
 
-  WatchScreen({this.movieModel, this.video});
+  WatchScreen({this.movieModel,});
 
   @override
   Widget build(BuildContext context) {
@@ -29,23 +26,22 @@ class WatchScreen extends StatelessWidget {
               ContainerWatch(
                 image: "https://image.tmdb.org/t/p/w500/" + movieModel.poster,
               ),
-              NameOfFilm(
+              ContainerOfFilm(
                 name: movieModel.title,
                 date: movieModel.date,
                 rate: movieModel.rating.toString(),
               ),
-              Buttons(
-                function: () {},
-              ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 child: Text(
                   "About",
                   style: TextStyle(color: K.whiteColor),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child: AutoSizeText(
                   movieModel.overview,
                   textAlign: TextAlign.start,
@@ -54,7 +50,7 @@ class WatchScreen extends StatelessWidget {
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 15, horizontal: 5),
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
                 child: Text(
                   "Watch trailer",
                   style: TextStyle(color: K.whiteColor, fontSize: 20),

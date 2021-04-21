@@ -25,17 +25,15 @@ dependencies:
     sdk: flutter
   dio:
   get: ^4.1.1
-  rxdart: ^0.23.1
   auto_size_text:
   octo_image: ^0.3.0
   cached_network_image: ^2.5.0
   youtube_player_flutter:
   video_player: ^2.1.1
   carousel_slider: ^3.0.0
-  percent_indicator: ^2.1.7+2
-  step_progress_indicator: ^0.2.5+8
   flutter_spinkit: ^4.1.2+1
   flutter_youtube:
+  url_launcher: ^6.0.3
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -5,6 +5,7 @@ import 'package:movie/model/person_model.dart';
 import 'package:movie/model/video_model.dart';
 import 'package:movie/services/film_services.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FilmController extends BaseController {
   static FilmController to = Get.find();
@@ -15,6 +16,8 @@ class FilmController extends BaseController {
   final _person = <Person>[].obs;
   final _video = <Video>[].obs;
   int id;
+  Future<void> launched;
+  final _url = 'https://www.cimaclub.store/watch/'.obs;
 
   List<MovieModel> get movie => _movie;
 
@@ -25,7 +28,7 @@ class FilmController extends BaseController {
   List<Video> get video => _video;
 
   List<Person> get person => _person;
-
+  String get url => _url.value;
   @override
   Future<void> onInit() async {
     super.onInit();
@@ -61,5 +64,12 @@ class FilmController extends BaseController {
     var c = a + b;
     print(c);
     return c;
+  }
+  Future<void> viewFilm(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

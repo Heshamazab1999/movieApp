@@ -14,13 +14,11 @@ class FilmServices {
   var getPopularUrl = "$mainUrl/movie/popular";
   var getPersonsUrl = "$mainUrl/trending/person/week";
   var movieUrl = "$mainUrl/movie";
-
   Future<List<MovieModel>> getTopRateMovies() async {
-    var params = {"api_key": apiKey, "language": "en-US", "page": 1};
+    var params = {"api_key": apiKey, "language": "en-US", "page":1};
     try {
       Response response =
           await _dio.get(getTopRatedUrl, queryParameters: params);
-      print(response.data['results']);
       Iterable list = response.data["results"];
       return list.map((e) => MovieModel.fromJson(e)).toList();
     } catch (error, stacktrace) {
@@ -76,7 +74,7 @@ class FilmServices {
   Future<List<Video>> getMovieVideos(int id) async {
     var params = {"api_key": apiKey, "language": "en-US"};
     try {
-      Response response = await _dio.get(movieUrl + "/$id" + "/videos",
+      Response response = await _dio.get(movieUrl+"/$id"+"/videos",
           queryParameters: params);
       print(response.data);
       Iterable list = response.data["results"];
