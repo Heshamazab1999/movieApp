@@ -9,15 +9,15 @@ import 'package:movie/constant.dart';
 import 'package:movie/controller/film_controller.dart';
 import 'package:movie/controller/screen_watch_controller.dart';
 import 'package:movie/enum/viewstate.dart';
-import 'package:movie/model/film_model.dart';
+import 'package:movie/model/series_model.dart';
 import 'package:video_player/video_player.dart';
 
-class WatchScreen extends StatelessWidget {
+class WatchSeriesScreen extends StatelessWidget {
   final _controller = Get.put(ScreenWatchController());
-  final MovieModel movieModel;
+  final SeriesModel seriesModel;
 
-  WatchScreen({
-    this.movieModel,
+  WatchSeriesScreen({
+    this.seriesModel,
   });
 
   @override
@@ -64,9 +64,9 @@ class WatchScreen extends StatelessWidget {
                           },
                         )),
                     ContainerOfFilm(
-                      name: movieModel.title,
-                      date: movieModel.date,
-                      rate: movieModel.rating.toString(),
+                      name: seriesModel.name,
+                      date: seriesModel.firstAirDate,
+                      rate: seriesModel.voteAverage.toString(),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
@@ -80,7 +80,7 @@ class WatchScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 5),
                       child: AutoSizeText(
-                        movieModel.overview,
+                        seriesModel.overview,
                         textAlign: TextAlign.start,
                         style: TextStyle(color: K.whiteColor, fontSize: 15),
                       ),
@@ -97,7 +97,7 @@ class WatchScreen extends StatelessWidget {
                         ? LoadingWidget()
                         : TrailerContainer(
                             id: "https://www.youtube.com/watch?v=" +
-                                FilmController.to.video[1].key)),
+                                FilmController.to.videoSeries[0].key)),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(

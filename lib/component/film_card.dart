@@ -55,7 +55,7 @@ class FilmCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SizedBox(
-                  width: 160,
+                  width: 150,
                   child: AutoSizeText(
                     name,
                     maxLines: 2,

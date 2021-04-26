@@ -8,6 +8,7 @@ import 'package:movie/component/loading.dart';
 import 'package:movie/constant.dart';
 import 'package:movie/controller/film_controller.dart';
 import 'package:movie/enum/viewstate.dart';
+import 'package:movie/screens/screen_play_series.dart';
 import 'package:movie/screens/screen_watch.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -81,6 +82,8 @@ class HomeScreen extends StatelessWidget {
                               itemBuilder: (BuildContext context, int index) =>
                                   FilmCard(
                                     function: () {
+                                      _controller.getVideo(
+                                          _controller.movie[index].id);
                                       Get.to(() => WatchScreen(
                                             movieModel:
                                                 _controller.movie[index],
@@ -111,6 +114,8 @@ class HomeScreen extends StatelessWidget {
                                     rate: _controller.moviePopular[index].rating
                                         .toString(),
                                     function: () {
+                                      _controller.getVideo(
+                                          _controller.moviePopular[index].id);
                                       Get.to(() => WatchScreen(
                                             movieModel:
                                                 _controller.moviePopular[index],
@@ -118,6 +123,69 @@ class HomeScreen extends StatelessWidget {
                                     },
                                     image: "https://image.tmdb.org/t/p/w500/" +
                                         _controller.moviePopular[index].poster,
+                                  )),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          child: Text(
+                            "Series Popular",
+                            style: TextStyle(color: K.textColor, fontSize: 18),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 300,
+                          child: ListView.builder(
+                              itemCount: _controller.seriesPopular.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (BuildContext context, int index) =>
+                                  FilmCard(
+                                    name: _controller.seriesPopular[index].name,
+                                    rate: _controller
+                                        .seriesPopular[index].voteAverage
+                                        .toString(),
+                                    function: () {
+                                      Get.to(() => WatchSeriesScreen(
+                                            seriesModel: _controller
+                                                .seriesPopular[index],
+                                          ));
+                                    },
+                                    image: "https://image.tmdb.org/t/p/w500/" +
+                                        _controller
+                                            .seriesPopular[index].posterPath,
+                                  )),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          child: Text(
+                            "Top Rated Series",
+                            style: TextStyle(color: K.textColor, fontSize: 18),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 300,
+                          child: ListView.builder(
+                              itemCount: _controller.seriesTopRated.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (BuildContext context, int index) =>
+                                  FilmCard(
+                                    name:
+                                        _controller.seriesTopRated[index].name,
+                                    rate: _controller
+                                        .seriesTopRated[index].voteAverage
+                                        .toString(),
+                                    function: () {
+                                      _controller.getVideoSeries(
+                                          _controller.seriesTopRated[index].id);
+                                      Get.to(() => WatchSeriesScreen(
+                                            seriesModel: _controller
+                                                .seriesTopRated[index],
+                                          ));
+                                      _controller.getVideoSeries(
+                                          _controller.seriesTopRated[index].id);
+                                    },
+                                    image: "https://image.tmdb.org/t/p/w500/" +
+                                        _controller
+                                            .seriesTopRated[index].posterPath,
                                   )),
                         ),
                       ],
