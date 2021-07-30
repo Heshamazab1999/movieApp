@@ -35,34 +35,11 @@ class WatchScreen extends StatelessWidget {
                   children: [
                     Container(
                         height: 250,
-                        child: FutureBuilder(
-                          future: _controller.initializeVideoPlayerFuture,
-                          builder: (context, snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.done) {
-                              // If the VideoPlayerController has finished initialization, use
-                              // the data it provides to limit the aspect ratio of the VideoPlayer.
-                              return Stack(
-                                children: [
-                                  VideoPlayer(_controller.controller),
-                                  IconButton(
-                                      onPressed: () {
-                                        _controller.play();
-                                        print("::::");
-                                      },
-                                      icon: Icon(
-                                        Icons.pause,
-                                        color: K.whiteColor,
-                                      ))
-                                ],
-                              );
-                            } else {
-                              // If the VideoPlayerController is still initializing, show a
-                              // loading spinner.
-                              return Center(child: CircularProgressIndicator());
-                            }
-                          },
-                        )),
+                        child:Obx(() => (_controller.state == ViewState.busy)
+                            ? LoadingWidget()
+                            :  TrailerContainer(
+                            id: "https://www.youtube.com/watch?v=" +
+                                FilmController.to.video[1].key)),),
                     ContainerOfFilm(
                       name: movieModel.title,
                       date: movieModel.date,
